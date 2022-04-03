@@ -3,4 +3,12 @@
 	padding: 15px;
 	grid-area: n;
 }
-
+.item{
+	
+}
+.item .active{
+	color: rgb(255, 0, 89);
+}
+a{
+	color: inherit;
+}

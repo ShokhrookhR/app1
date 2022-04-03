@@ -7,9 +7,9 @@ function Navbar() {
 	 
 		 
 			 <div className={s.nav}>
-				 <div className={s.item}><NavLink to="/profile">Profile</NavLink></div>
-				 <div className={s.item}><NavLink to={"/dialogs"}>Dialogs</NavLink></div>
-				 <div className={s.item}>Communities</div>
+				 <div className={s.item}><NavLink to="/profile" className={(navData)=>navData.isActive?s.active:null}>Profile</NavLink></div>
+				 <div className={s.item}><NavLink to={"/dialogs"} className={(navData)=>navData.isActive?s.active:null}>Dialogs</NavLink></div>
+				 <div className={s.item}><NavLink to='/music' className={(navData)=>navData.isActive?s.active:null}>Music</NavLink></div>
 				 <div className={s.item}>Friends</div>
 			 </div>
 		 
