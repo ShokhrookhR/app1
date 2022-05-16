@@ -15,3 +15,13 @@
 	flex-direction: column;
 	gap: 20px;
 }
+.likes{
+	display: flex;
+	gap: 5px;
+
+}
+.likes button{
+	background-color: #ffffff;
+	color: pink;
+	font-weight: 700;
+}

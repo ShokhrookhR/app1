@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
-[class*="container"] {
+[class*="_container"] {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 15px;
@@ -87,5 +87,9 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-areas: 
   "h h"
   "n p";
+}
+.page{
+  grid-area: p;
+	background-color: rgb(179, 255, 0);
 }
 

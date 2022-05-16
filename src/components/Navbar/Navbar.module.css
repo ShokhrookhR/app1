@@ -2,6 +2,9 @@
 	background-color: pink;
 	padding: 15px;
 	grid-area: n;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 .item{
 	

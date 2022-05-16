@@ -1,22 +1,29 @@
-import React from 'react'
-import s from './Post.module.css'
+import React, { useState } from 'react';
+import s from './Post.module.css';
 
 function Post(props) {
+  const [count, setCount] = useState(1);
+
   return (
-	 <div className={s.post}>
-		<div className={s.img}>
-			<img src="https://picsum.photos/50/50"/>
-		</div>
-		<div className={s.body}>
-			<div className={s.text}>
-				Lorem ipsum dolor sit amet.
-			</div>
-			<div className={s.likes}>
-				<span>{props.likeCount}</span>
-			</div>
-		</div>
-	 </div>
-  )
+    <div className={s.post}>
+      <div className={s.img}>
+        <img src="https://picsum.photos/50/50" />
+      </div>
+      <div className={s.body}>
+        <div className={s.text}>{props.text}</div>
+        <div className={s.likes}>
+          <span>{count}</span>
+
+          <button
+            onClick={() => {
+              setCount((actual) => actual + 1);
+            }}>
+            Like
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Post
+export default Post;
