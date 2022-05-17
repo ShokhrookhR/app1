@@ -5,14 +5,23 @@ import Post from './Post/Post';
 
 function MyPosts(props) {
   const [count, setCount] = useState(1);
+  let newRef = React.createRef();
+
+  let addPost = ()=>{
+    let text = newRef.current.value;
+    props.addPost(text);
+    alert(text);
+    
+    
+  }
 
   return (
     <div className={s.posts}>
       <div className={s.title}></div>
       <div className={s.input}>
-        <textarea placeholder="Your News..." />
+        <textarea ref={newRef} placeholder="Your News..." />
       </div>
-      <button className={s.btn}>Send</button>
+      <button className={s.btn} onClick={addPost}>Send</button>
       {props.posts.map((e) => (
         <Post text={e.text} likeCount={e.count}  />
       ))}

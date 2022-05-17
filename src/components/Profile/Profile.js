@@ -11,7 +11,7 @@ const items = [
   <img src="https://picsum.photos/1200/451" onDragStart={handleDragStart} />,
   <img src="https://picsum.photos/1200/452" onDragStart={handleDragStart} />,
 ];
-function Profile() {
+function Profile(props) {
   return (
     <div className={s.profile}>
       <div className={s.img}>
@@ -20,7 +20,7 @@ function Profile() {
       </div>
       <div className={s.body}>
         <div className={s.content}>
-          <MyPosts />
+          <MyPosts posts={props.state.posts} addPost={props.addPost}/>
         </div>
       </div>
     </div>
