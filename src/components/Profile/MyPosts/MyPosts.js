@@ -10,7 +10,7 @@ function MyPosts(props) {
   let addPost = ()=>{
     let text = newRef.current.value;
     props.addPost(text);
-    alert(text);
+    newRef.current.value='';
     
     
   }

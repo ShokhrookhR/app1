@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App";
 import state from "./components/State/state"
 import {addPost} from "./components/State/state"
+import { rerender } from "./render";
 
-ReactDOM.render(<App state={state} addPost={addPost}/>, document.getElementById("root"));
+rerender(state);
 
 
 

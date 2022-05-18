@@ -1,3 +1,5 @@
+import { rerender } from "../../render";
+
 const state = {
 	navbarPage: {
     friends: [
@@ -81,5 +83,6 @@ export let addPost = (postMessage)=>{
     count: 15,
   };
   state.profilePage.posts.push(newPost);
+  rerender(state);
 }
 export default state
