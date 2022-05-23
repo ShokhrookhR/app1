@@ -11,7 +11,7 @@ function App(props) {
     <BrowserRouter>
       <div className="wrapper">
         <Header />
-        <Navbar state={props.state.navbarPage} />
+        <Navbar state={props.state.navbarPage} store={props.store} />
         <div className="page">
           <Routes>
             <Route
@@ -21,6 +21,7 @@ function App(props) {
                   profilePage={props.state.profilePage}
                   addPost={props.addPost}
                   updatePostText={props.updatePostText}
+                  store={props.store}
                 />
               }
             />

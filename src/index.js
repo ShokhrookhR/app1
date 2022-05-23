@@ -2,14 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import state, { addPost, updatePostText } from './components/State/state';
-import { listener } from './components/State/state';
+// import state, { addPost, updatePostText } from './components/State/state';
+// import { listener } from './components/State/state';
+import store from './components/State/store';
 
 let rerender = (state) => {
   ReactDOM.render(
-    <App state={state} addPost={addPost} updatePostText={updatePostText} />,
+    <App
+      store={store}
+      state={state}
+      addPost={store.addPost.bind(store)}
+      updatePostText={store.updatePostText.bind(store)}
+    />,
     document.getElementById('root'),
   );
 };
-rerender(state);
-listener(rerender);
+rerender(store.getState());
+store.listener(rerender);
