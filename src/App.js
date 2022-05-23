@@ -11,13 +11,21 @@ function App(props) {
     <BrowserRouter>
       <div className="wrapper">
         <Header />
-        <Navbar state={props.state.navbarPage}/>
+        <Navbar state={props.state.navbarPage} />
         <div className="page">
           <Routes>
-            <Route path="/profile/*" element={<Profile state={props.state.profilePage} addPost={props.addPost}/>} />
-            <Route path="/dialogs/*" element={<Dialogs state={props.state.dialogPage}/>} />
+            <Route
+              path="/profile/*"
+              element={
+                <Profile
+                  profilePage={props.state.profilePage}
+                  addPost={props.addPost}
+                  updatePostText={props.updatePostText}
+                />
+              }
+            />
+            <Route path="/dialogs/*" element={<Dialogs state={props.state.dialogPage} />} />
             <Route path="/carousel/*" element={<Carousel />} />
-            {/* <Route path="*" element={<Profile />} /> */}
           </Routes>
         </div>
       </div>

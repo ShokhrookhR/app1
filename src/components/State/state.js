@@ -1,7 +1,7 @@
 import { rerender } from "../../render";
 
 const state = {
-	navbarPage: {
+  navbarPage: {
     friends: [
       {
         id: 1,
@@ -21,19 +21,20 @@ const state = {
     ],
   },
   profilePage: {
+    newPostText: 'assa',
     posts: [
-      { 
-        id:1,
+      {
+        id: 1,
         text: 'Its my first post',
         count: 15,
       },
-      { 
-        id:2,
+      {
+        id: 2,
         text: 'Hi',
         count: 6,
       },
-      { 
-        id:3,
+      {
+        id: 3,
         text: 'Today is a good day',
         count: 35,
       },
@@ -76,13 +77,22 @@ const state = {
     ],
   },
 };
-export let addPost = (postMessage)=>{
-  let newPost={
+window.state = state;
+
+export let addPost = (postMessage) => {
+  let newPost = {
     id: Date.now(),
     text: postMessage,
     count: 15,
   };
   state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
   rerender(state);
-}
+};
+export let updatePostText = (textPost) => {
+  state.profilePage.newPostText = textPost;
+
+  rerender(state);
+};
+
 export default state

@@ -20,7 +20,7 @@ function Profile(props) {
       </div>
       <div className={s.body}>
         <div className={s.content}>
-          <MyPosts posts={props.state.posts} addPost={props.addPost}/>
+          <MyPosts posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} addPost={props.addPost} updatePostText={props.updatePostText}/>
         </div>
       </div>
     </div>
