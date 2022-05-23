@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
 
-import state from './components/State/state';
+import state, { addPost, updatePostText } from './components/State/state';
+import { listener } from './components/State/state';
 
-import { rerender } from './render';
-
+let rerender = (state) => {
+  ReactDOM.render(
+    <App state={state} addPost={addPost} updatePostText={updatePostText} />,
+    document.getElementById('root'),
+  );
+};
 rerender(state);
+listener(rerender);

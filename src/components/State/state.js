@@ -1,5 +1,6 @@
-import { rerender } from "../../render";
-
+let rerender = () => {
+  console.log('Hi!');
+};
 const state = {
   navbarPage: {
     friends: [
@@ -94,5 +95,8 @@ export let updatePostText = (textPost) => {
 
   rerender(state);
 };
+export const listener = (observer) => {
+  rerender = observer;
+};
 
-export default state
+export default state;
