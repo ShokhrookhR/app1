@@ -23,8 +23,9 @@ function Profile(props) {
             store={props.store}
             posts={props.profilePage.posts}
             newPostText={props.profilePage.newPostText}
-            addPost={props.addPost}
-            updatePostText={props.updatePostText}
+            // addPost={props.addPost}
+            // updatePostText={props.updatePostText}
+            dispatch={props.dispatch}
           />
         </div>
       </div>

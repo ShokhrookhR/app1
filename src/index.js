@@ -11,8 +11,9 @@ let rerender = (state) => {
     <App
       store={store}
       state={state}
-      addPost={store.addPost.bind(store)}
-      updatePostText={store.updatePostText.bind(store)}
+      // addPost={store._addPost.bind(store)}
+      // updatePostText={store._updatePostText.bind(store)}
+      dispatch={store.dispatch.bind(store)}
     />,
     document.getElementById('root'),
   );
