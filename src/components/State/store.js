@@ -107,7 +107,7 @@ let store = {
     this._rerender = observer;
   },
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
       let newPost = {
         id: Date.now(),
         text: action.postText,
@@ -116,7 +116,7 @@ let store = {
       this._state.profilePage.posts.push(newPost);
       this._state.profilePage.newPostText = '';
       this._rerender(this._state);
-    } else if (action.type === 'UPDATE-POST-TEXT') {
+    } else if (action.type === UPDATE_POST_TEXT) {
       this._state.profilePage.newPostText = action.textPost;
 
       this._rerender(this._state);
