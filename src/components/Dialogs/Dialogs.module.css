@@ -1,13 +1,55 @@
+.dialogs{
+	
+}
 .body{
+	
+}
+.row{
 	padding: 30px 15px;
 
 	display: flex;
 	gap: 50px;
+	
 
 }
 .dialogItems>:not(:last-child){
 	margin: 0px 0px 10px 0px;
 }
-.messages>:not(:last-child){
+.messages{
+	display: flex;
+	flex-direction: column;
+
+}
+.messageItems>:not(:last-child){
 	margin: 0px 0px 10px 0px;
+}
+.messageItems{
+	flex: 1 1 auto;
+	margin: 0px 0px 30px 0px;
+
+}
+.btns{
+	
+	display: flex;
+	justify-self: end;
+	gap: 10px;
+	
+	
+	
+}
+.btns button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 15px;
+	background-color: rgb(47, 47, 203);
+	color: #ffffff;
+	border-radius: 5px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+.btns textarea{
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #E9DFDFFF;
 }

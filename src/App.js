@@ -26,7 +26,10 @@ function App(props) {
                 />
               }
             />
-            <Route path="/dialogs/*" element={<Dialogs state={props.state.dialogPage} />} />
+            <Route
+              path="/dialogs/*"
+              element={<Dialogs state={props.state.dialogPage} dispatch={props.dispatch} />}
+            />
             <Route path="/carousel/*" element={<Carousel />} />
           </Routes>
         </div>

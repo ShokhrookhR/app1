@@ -1,8 +1,7 @@
-// let rerender = () => {
-//   console.log('Hi!');
-// };
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 
 let store = {
   _state: {
@@ -26,7 +25,7 @@ let store = {
       ],
     },
     profilePage: {
-      newPostText: 'assa',
+      newPostText: 'GGMU!',
       posts: [
         {
           id: 1,
@@ -74,17 +73,21 @@ let store = {
         },
       ],
       messages: [
-        { message: 'Hello!' },
-        { message: 'How are you?!' },
-        { message: 'Where are you from?!' },
-        { message: 'Hello!' },
-        { message: 'Where are you from?!' },
+        { id: 1, message: 'Hello!' },
+        { id: 1, message: 'How are you?!' },
+        { id: 1, message: 'Where are you from?!' },
+        { id: 1, message: 'Hello!' },
+        { id: 1, message: 'Where are you from?!' },
       ],
+      newMessageBody: 'GGMU!',
     },
   },
-  _rerender() {
-    console.log('Hi!');
-  },
+  // addMessage(newText){
+  //   let newMessage={message:newText}
+  //   this._state.dialogPage.messages.push(newMessage);
+  //   this._rerender(this._state);
+  // },
+  _rerender() {},
   getState() {
     return this._state;
   },
@@ -120,6 +123,14 @@ let store = {
       this._state.profilePage.newPostText = action.textPost;
 
       this._rerender(this._state);
+    } else if (action.type === ADD_MESSAGE) {
+      let newMessage = { id: Date.now(), message: action.textMessage };
+      this._state.dialogPage.messages.push(newMessage);
+      this._state.dialogPage.newMessageBody = '';
+      this._rerender(this._state);
+    } else if (action.type === UPDATE_MESSAGE_TEXT) {
+      this._state.dialogPage.newMessageBody = action.textMessage;
+      this._rerender(this._state);
     }
   },
 };
@@ -133,6 +144,18 @@ export const updatePostTextActionCreator = (text) => {
   return {
     type: UPDATE_POST_TEXT,
     textPost: text,
+  };
+};
+export const addMessageActionCreator = (text) => {
+  return {
+    type: ADD_MESSAGE,
+    textMessage: text,
+  };
+};
+export const updateMessageActionCreator = (text) => {
+  return {
+    type: UPDATE_MESSAGE_TEXT,
+    textMessage: text,
   };
 };
 window.store = store;
