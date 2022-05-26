@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { addPostActionCreator, updatePostTextActionCreator } from '../../State/store';
+import { addPostActionCreator, updatePostTextActionCreator } from '../../State/profileReducer';
+// import { addPostActionCreator, updatePostTextActionCreator } from '../../State/store';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 

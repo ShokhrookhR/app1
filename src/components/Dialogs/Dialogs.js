@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { addMessageActionCreator, updateMessageActionCreator } from '../State/store';
+import { addMessageActionCreator, updateMessageActionCreator } from '../State/dialogsReducer';
+
 import DialogItem from './DialogItems/DialogItem';
 import s from './Dialogs.module.css';
 
@@ -15,7 +16,6 @@ function Dialogs(props) {
     if (props.state.newMessageBody) {
       props.dispatch(addMessageActionCreator(text));
     }
-    // alert(text);
   };
   let updateMessageText = () => {
     let text = newRef.current.value;
