@@ -1,8 +1,9 @@
 import React from "react";
-import MyPosts from "./MyPosts/MyPosts";
+// import MyPosts from "./MyPosts/MyPosts";
 import s from "./Profile.module.css";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -19,13 +20,9 @@ function Profile(props) {
       </div>
       <div className={s.body}>
         <div className={s.content}>
-          <MyPosts
+          <MyPostsContainer
             store={props.store}
-            posts={props.profilePage.posts}
-            newPostText={props.profilePage.newPostText}
-            // addPost={props.addPost}
-            // updatePostText={props.updatePostText}
-            dispatch={props.dispatch}
+            
           />
         </div>
       </div>

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { addPostActionCreator, updatePostTextActionCreator } from '../../State/profileReducer';
-// import { addPostActionCreator, updatePostTextActionCreator } from '../../State/store';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
@@ -8,17 +6,16 @@ function MyPosts(props) {
   const [count, setCount] = useState(1);
   let newRef = React.createRef();
 
-  let addPost = () => {
+  let onAddPost = () => {
     let text = newRef.current.value;
     if (text) {
-      // props.addPost(text);
-      props.dispatch(addPostActionCreator(text));
+      props.addPost(text);
     }
   };
-  let updateText = () => {
+  let onUpdateText = () => {
     let text = newRef.current.value;
-    // props.updatePostText(text);
-    props.dispatch(updatePostTextActionCreator(text));
+
+    props.updateText(text);
   };
 
   return (
@@ -28,11 +25,11 @@ function MyPosts(props) {
         <textarea
           ref={newRef}
           placeholder="Your News..."
-          onChange={updateText}
+          onChange={onUpdateText}
           value={props.newPostText}
         />
       </div>
-      <button className={s.btn} onClick={addPost}>
+      <button className={s.btn} onClick={onAddPost}>
         Send
       </button>
       {props.posts.map((e) => (
