@@ -86,7 +86,7 @@ let store = {
     return this._state;
   },
 
-  listener(observer) {
+  subscribe(observer) {
     this._rerender = observer;
   },
   dispatch(action) {

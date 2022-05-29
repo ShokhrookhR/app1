@@ -4,16 +4,12 @@ import s from './FriendItem.module.css'
 
 function FriendItem(props) {
   return (
-    
-	
-
-				<div className={s.friend}>
-          
-          <div className={s.img}><img src={props.img} alt="" /></div>
-          <div className={s.name}>{props.name}</div>
-        
-        </div>
-    
+    <div className={s.friend}>
+      <div className={s.img}>
+        <img src={props.img} />
+      </div>
+      <div className={s.name}>{props.name}</div>
+    </div>
   );
 }
 

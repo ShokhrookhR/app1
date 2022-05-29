@@ -4,6 +4,7 @@ import Friends from './Friends/Friends';
 import s from './Navbar.module.css'
 
 function Navbar(props) {
+  let state = props.store.getState();
   return (
     <div className={s.nav}>
       <div className={s.links}>
@@ -28,8 +29,7 @@ function Navbar(props) {
           </NavLink>
         </div>
       </div>
-		<Friends friends={props.state.friends}/>
-		
+      <Friends friends={state.navbarPage.friends} />
     </div>
   );
 }
