@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Friends from './Friends/Friends';
-import s from './Navbar.module.css'
+import FriendsContainer from './Friends/FriendsContainer';
+import s from './Navbar.module.css';
 
-function Navbar(props) {
-  let state = props.store.getState();
+function Navbar() {
   return (
     <div className={s.nav}>
       <div className={s.links}>
@@ -29,7 +29,7 @@ function Navbar(props) {
           </NavLink>
         </div>
       </div>
-      <Friends friends={state.navbarPage.friends} />
+      <FriendsContainer />
     </div>
   );
 }
