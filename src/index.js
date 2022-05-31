@@ -6,19 +6,17 @@ import store from './components/State/reduxStore';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-let rerender = () => {
+
   ReactDOM.render(
     <BrowserRouter>
       <Provider store={store}>
-        <App store={store} />
+        <App />
       </Provider>
     </BrowserRouter>,
 
     document.getElementById('root'),
   );
-};
 
-rerender();
-store.subscribe(() => {
-  rerender();
-});
+
+
+
