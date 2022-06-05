@@ -23,9 +23,10 @@ function Navbar() {
             Carousel
           </NavLink>
         </div>
+
         <div className={s.item}>
-          <NavLink to="/music" className={(navData) => (navData.isActive ? s.active : null)}>
-            Music
+          <NavLink to="/users" className={(navData) => (navData.isActive ? s.active : null)}>
+            Users
           </NavLink>
         </div>
       </div>
