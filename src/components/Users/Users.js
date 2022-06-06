@@ -1,45 +1,32 @@
+import axios from 'axios';
 import React from 'react';
-
+import userPhoto from '../../assets/Images/user.png';
+import './Users.module.css';
+import s from './Users.module.css';
 const Users = (props) => {
   if (props.users.length === 0) {
-    props.setUsers([
-      {
-        id: 1,
-        name: 'Sancho',
-        status: 'I Love MU',
-        followed: true,
-        photoURL: '',
-        location: { country: 'Uzbekistan', city: 'Tashkent' },
-      },
-      {
-        id: 2,
-        name: 'Fernandes',
-        status: 'I Love MU',
-        followed: true,
-        photoURL: '',
-        location: { country: 'Uzbekistan', city: 'Tashkent' },
-      },
-      {
-        id: 3,
-        name: 'Ronaldo',
-        status: 'I Love MU',
-        followed: false,
-        photoURL: '',
-        location: { country: 'Uzbekistan', city: 'Termez' },
-      },
-    ]);
+    axios.get('https://social-network.samuraijs.com/api/1.0/users').then((response) => {
+      props.setUsers(response.data.items);
+    });
   }
   return (
-    <div>
+    <div className={s.body}>
       {props.users.map((u) => (
-        <div key={u.id}>
+        <div key={u.id} className={s.item}>
+          <div className={s.image}>
+            <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="userAva" />
+          </div>
           <div>{u.name}</div>
-          <div>{u.status}</div>
+          <div>{u.status != null ? u.status : 'Manchester United'}</div>
           <div>
             {u.followed ? (
-              <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
+              <button className={s.btn} onClick={() => props.unfollow(u.id)}>
+                Unfollow
+              </button>
             ) : (
-              <button onClick={() => props.follow(u.id)}>Follow</button>
+              <button className={s.btn} onClick={() => props.follow(u.id)}>
+                Follow
+              </button>
             )}
           </div>
         </div>

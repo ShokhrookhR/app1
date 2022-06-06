@@ -1,0 +1,24 @@
+.image img{
+	width: 200px;
+	
+}
+.body{
+	padding: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+.item{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	border: 1px solid #000;
+}
+.btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+	
+}
