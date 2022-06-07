@@ -9,24 +9,16 @@ let initialization = {
 const usersReducer = (state = initialization, action) => {
   switch (action.type) {
     case FOLLOW:
-      // return {
-      //   ...state,
-      //   users: state.users.map((u) => {
-      //     if (u.id === action.userId) {
-      //       return { ...u, followed: true };
-      //     }
-      //     return u;
-      //   }),
-      // };
       return {
         ...state,
-        users: state.map((u) => {
+        users: state.users.map((u) => {
           if (u.id === action.userId) {
             return { ...u, followed: true };
           }
           return u;
         }),
       };
+      
 
     case UNFOLLOW:
       return {
