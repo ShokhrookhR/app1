@@ -1,13 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { followAC, setUsersAC, unfollowAC } from '../State/usersReducer';
+import { followAC, setCurrentPageAC, setUsersAC, unfollowAC } from '../State/usersReducer';
 import Users from './Users';
 
 let f1 = (state) => {
   return {
     users: state.usersPage.users,
+    count: state.usersPage.count,
+    totalUsers: state.usersPage.totalUsers,
+    currentPage: state.usersPage.currentPage,
   };
 };
+
 let f2 = (dispatch) => {
   return {
     follow: (userId) => {
@@ -18,6 +22,9 @@ let f2 = (dispatch) => {
     },
     setUsers: (users) => {
       dispatch(setUsersAC(users));
+    },
+    setCurrentPage: (currentPage) => {
+      dispatch(setCurrentPageAC(currentPage));
     },
   };
 };

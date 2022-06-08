@@ -1,9 +1,15 @@
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+}
 .image img{
-	width: 200px;
+	width: 150px;
+	
 	
 }
 .body{
-	padding: 15px;
+	
 	display: flex;
 	flex-wrap: wrap;
 	gap: 30px;
@@ -14,6 +20,7 @@
 	gap: 10px;
 	align-items: center;
 	border: 1px solid #000;
+	background-color: violet;
 }
 .btn{
 	display: flex;
@@ -21,4 +28,20 @@
 	align-items: center;
 	padding: 15px;
 	
+}
+.pagination {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 0px 0px 20px 0px;
+}
+.active{
+	font-weight: 700;
+	color: rgb(255, 0, 191);
+}
+.page{
+	cursor: pointer;
+}
+.pagination span{
+	cursor: pointer;
 }
