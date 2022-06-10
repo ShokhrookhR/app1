@@ -1,74 +1,54 @@
-import axios from 'axios';
-import userPhoto from '../../assets/Images/user.png';
-import React, { Component } from 'react';
+import React from 'react';
 import './Users.module.css';
 import s from './Users.module.css';
+import userPhoto from '../../assets/Images/user.png';
 
-export default class Users extends Component {
-  componentDidMount() {
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.count}`)
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        console.log(response.data);
-      });
+const Users = (props) => {
+  let pagesCount = Math.ceil(props.totalUsers / props.count);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
-  setCurrentPage=(currentPage)=>{
-    this.props.setCurrentPage(currentPage)
-    axios
-    .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`)
-    .then((response) => {
-      this.props.setUsers(response.data.items);
-      console.log(response.data);
-    });
-    
-  }
-  render() {
-    let pagesCount = Math.ceil(this.props.totalUsers / this.props.count);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i);
-    }
-
-    return (
-      <div className={s.wrapper}>
-        <div className={s.pagination}>
-          {pages.map((p) => {
-            return (
-              <span
-                onClick={(e) => {
-                  this.setCurrentPage(p);
-                }}
-                className={this.props.currentPage === p && s.active}>
-                {p}
-              </span>
-            );
-          })}
-        </div>
-        <div className={s.body}>
-          {this.props.users.map((u, i) => (
-            <div key={u.id} className={s.item}>
-              <div className={s.image}>
-                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="userAva" />
-              </div>
-              <div>{u.name}</div>
-
-              <div>{u.status != null ? u.status : 'Manchester United'}</div>
-              <div>
-                {u.followed ? (
-                  <button className={s.btn} onClick={() => this.props.unfollow(u.id)}>
-                    Unfollow
-                  </button>
-                ) : (
-                  <button className={s.btn} onClick={() => this.props.follow(u.id)}>
-                    Follow
-                  </button>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+  return (
+    <div className={s.wrapper}>
+      <div className={s.pagination}>
+        {pages.map((p) => {
+          return (
+            <span
+              onClick={(e) => {
+                props.setCurrentPage(p);
+              }}
+              className={props.currentPage === p && s.active}>
+              {p}
+            </span>
+          );
+        })}
       </div>
-    );
-  }
-}
+      <div className={s.body}>
+        {props.users.map((u, i) => (
+          <div key={u.id} className={s.item}>
+            <div className={s.image}>
+              <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="userAva" />
+            </div>
+            <div>{u.name}</div>
+
+            <div>{u.status != null ? u.status : 'Manchester United'}</div>
+            <div>
+              {u.followed ? (
+                <button className={s.btn} onClick={() => props.unfollow(u.id)}>
+                  Unfollow
+                </button>
+              ) : (
+                <button className={s.btn} onClick={() => props.follow(u.id)}>
+                  Follow
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Users;
