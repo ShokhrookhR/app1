@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialization = {
   newPostText: 'GGMU!',
@@ -20,15 +21,12 @@ let initialization = {
       count: 35,
     },
   ],
+  userProfile: null,
 };
 
 const profileReducer = (state = initialization, action) => {
   switch (action.type) {
     case UPDATE_POST_TEXT:
-      // {
-      //   let stateCopy={...state}
-      //   stateCopy.newPostText = action.textPost;
-      // return stateCopy;}
       return {
         ...state,
         newPostText: action.textPost,
@@ -39,18 +37,17 @@ const profileReducer = (state = initialization, action) => {
         text: action.postText,
         count: 15,
       };
-      //   let stateCopy = { ...state };
-      //   stateCopy.posts = [...state.posts];
-      //   stateCopy.posts.push(newPost);
-      //   stateCopy.newPostText = '';
-      //   return stateCopy;
-      // }
+
       return {
         ...state,
         posts: [...state.posts, newPost],
         newPostText: '',
       };
-
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: action.profile,
+      };
     default:
       return state;
   }
@@ -65,6 +62,12 @@ export const updatePostTextActionCreator = (text) => {
   return {
     type: UPDATE_POST_TEXT,
     textPost: text,
+  };
+};
+export const setUserProfileAC = (profile) => {
+  return {
+    type: SET_USER_PROFILE,
+    profile,
   };
 };
 export default profileReducer;

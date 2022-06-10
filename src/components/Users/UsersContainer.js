@@ -12,7 +12,7 @@ import axios from 'axios';
 import Users from './Users';
 import Preloader from './Preloader';
 
-class UsersC extends Component {
+class UsersContainer extends Component {
   componentDidMount() {
     this.props.toggleIsLoading(true);
     axios
@@ -66,37 +66,46 @@ class UsersC extends Component {
   }
 }
 
-let f1 = (state) => {
-  return {
-    users: state.usersPage.users,
-    count: state.usersPage.count,
-    totalUsers: state.usersPage.totalUsers,
-    currentPage: state.usersPage.currentPage,
-    isLoading: state.usersPage.isLoading,
-  };
-};
+let f1 = (state) => ({
+  users: state.usersPage.users,
+  count: state.usersPage.count,
+  totalUsers: state.usersPage.totalUsers,
+  currentPage: state.usersPage.currentPage,
+  isLoading: state.usersPage.isLoading,
+});
 
-let f2 = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followAC(userId));
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowAC(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users));
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch(setCurrentPageAC(currentPage));
-    },
-    setTotalUsers: (totalUsers) => {
-      dispatch(setTotalUsersAC(totalUsers));
-    },
-    toggleIsLoading: (isLoading) => {
-      dispatch(toggleIsLoadingAC(isLoading));
-    },
-  };
-};
-const UsersContainer = connect(f1, f2)(UsersC);
-export default UsersContainer;
+// let f2 = (dispatch) => {
+//   return {
+//     follow: (userId) => {
+//       dispatch(followAC(userId));
+//     },
+//     unfollow: (userId) => {
+//       dispatch(unfollowAC(userId));
+//     },
+//     setUsers: (users) => {
+//       dispatch(setUsersAC(users));
+//     },
+//     setCurrentPage: (currentPage) => {
+//       dispatch(setCurrentPageAC(currentPage));
+//     },
+//     setTotalUsers: (totalUsers) => {
+//       dispatch(setTotalUsersAC(totalUsers));
+//     },
+//     toggleIsLoading: (isLoading) => {
+//       dispatch(toggleIsLoadingAC(isLoading));
+//     },
+//   };
+// };
+
+export default connect(f1, {
+  follow: followAC,
+
+  unfollow: unfollowAC,
+
+  setUsers: setUsersAC,
+
+  setCurrentPage: setCurrentPageAC,
+  setTotalUsers: setTotalUsersAC,
+
+  toggleIsLoading: toggleIsLoadingAC,
+})(UsersContainer);
