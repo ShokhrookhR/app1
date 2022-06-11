@@ -14,10 +14,12 @@ function App() {
       <Navbar />
       <div className="page">
         <Routes>
+          <Route path="/profile/:userId" element={<ProfileContainer />} />
           <Route path="/profile/*" element={<ProfileContainer />} />
           <Route path="/dialogs/*" element={<DialogsContainer />} />
           <Route path="/carousel/*" element={<Carousel />} />
           <Route path="/users/*" element={<UsersContainer />} />
+          <Route path="/" element={<ProfileContainer />} />
         </Routes>
       </div>
     </div>
