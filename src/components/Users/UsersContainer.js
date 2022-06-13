@@ -18,6 +18,9 @@ class UsersContainer extends Component {
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.count}`,
+        {
+          withCredentials: true,
+        },
       )
       .then((response) => {
         this.props.toggleIsLoading(false);
@@ -33,6 +36,9 @@ class UsersContainer extends Component {
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`,
+        {
+          withCredentials: true,
+        },
       )
       .then((response) => {
         this.props.toggleIsLoading(false);
@@ -42,12 +48,6 @@ class UsersContainer extends Component {
       });
   };
   render() {
-    let pagesCount = Math.ceil(this.props.totalUsers / this.props.count);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-      pages.push(i);
-    }
-
     return (
       <>
         {this.props.isLoading ? <Preloader /> : null}
