@@ -1,13 +1,13 @@
 const SET_USER_DATA = 'SET_USER_DATA';
 
-let initialization = {
+let initialState = {
   userId: null,
   login: null,
   email: null,
   isAuth: false,
 };
 
-const headerReducer = (state = initialization, action) => {
+const headerReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
       return {

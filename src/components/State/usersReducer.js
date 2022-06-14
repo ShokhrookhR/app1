@@ -4,16 +4,18 @@ const SETUSERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET_COUNT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING';
+const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE_FOLLOWING_PROGRESS';
 
-let initialization = {
+let initialState = {
   users: [],
   totalUsers: 100,
   count: 5,
   currentPage: 1,
   isLoading: false,
+  followingInProgress: [],
 };
 
-const usersReducer = (state = initialization, action) => {
+const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
       return {
@@ -57,7 +59,14 @@ const usersReducer = (state = initialization, action) => {
         ...state,
         isLoading: action.isLoading,
       };
-
+    case TOGGLE_FOLLOWING_PROGRESS:
+      return {
+        ...state,
+        followingInProgress: action.isLoading
+          ? // ? [...state.followingInProgress, state.followingInProgress.push(action.userId)]
+            [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter((id) => id !== action.userId),
+      };
     default:
       return state;
   }
@@ -96,6 +105,13 @@ export const toggleIsLoadingAC = (isLoading) => {
   return {
     type: TOGGLE_IS_LOADING,
     isLoading,
+  };
+};
+export const toggleFollowingProgressAC = (isLoading, userId) => {
+  return {
+    type: TOGGLE_FOLLOWING_PROGRESS,
+    isLoading,
+    userId,
   };
 };
 export default usersReducer;

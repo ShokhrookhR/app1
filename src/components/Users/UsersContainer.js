@@ -5,62 +5,41 @@ import {
   setCurrentPageAC,
   setTotalUsersAC,
   setUsersAC,
+  toggleFollowingProgressAC,
   toggleIsLoadingAC,
   unfollowAC,
 } from '../State/usersReducer';
-import axios from 'axios';
 import Users from './Users';
 import Preloader from './Preloader';
+import { usersApi } from '../../api/api';
 
 class UsersContainer extends Component {
   componentDidMount() {
     this.props.toggleIsLoading(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.count}`,
-        {
-          withCredentials: true,
-        },
-      )
-      .then((response) => {
-        this.props.toggleIsLoading(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsers(response.data.totalCount / 100);
-        console.log(response.data);
-      });
+    usersApi.getUsers(this.props.currentPage, this.props.count).then((data) => {
+      this.props.toggleIsLoading(false);
+      this.props.setUsers(data.items);
+      this.props.setTotalUsers(data.totalCount / 100);
+      console.log(data);
+    });
   }
   setCurrentPage = (currentPage) => {
     this.props.setCurrentPage(currentPage);
     this.props.toggleIsLoading(true);
 
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`,
-        {
-          withCredentials: true,
-        },
-      )
-      .then((response) => {
-        this.props.toggleIsLoading(false);
+    usersApi.getUsers(currentPage, this.props.count).then((data) => {
+      this.props.toggleIsLoading(false);
 
-        this.props.setUsers(response.data.items);
-        console.log(response.data);
-      });
+      this.props.setUsers(data.items);
+      console.log(data);
+    });
   };
   render() {
     return (
       <>
         {this.props.isLoading ? <Preloader /> : null}
 
-        <Users
-          totalUsers={this.props.totalUsers}
-          count={this.props.count}
-          users={this.props.users}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
-          currentPage={this.props.currentPage}
-          setCurrentPage={this.setCurrentPage}
-        />
+        <Users {...this.props} setCurrentPage={this.setCurrentPage} />
       </>
     );
   }
@@ -72,6 +51,7 @@ let f1 = (state) => ({
   totalUsers: state.usersPage.totalUsers,
   currentPage: state.usersPage.currentPage,
   isLoading: state.usersPage.isLoading,
+  followingInProgress: state.usersPage.followingInProgress,
 });
 
 // let f2 = (dispatch) => {
@@ -108,4 +88,5 @@ export default connect(f1, {
   setTotalUsers: setTotalUsersAC,
 
   toggleIsLoading: toggleIsLoadingAC,
+  togglefollowingProgress: toggleFollowingProgressAC,
 })(UsersContainer);

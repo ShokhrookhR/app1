@@ -1,7 +1,7 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 
-let initialization = {
+let initialState = {
   users: [
     {
       name: 'Shahzod',
@@ -39,13 +39,9 @@ let initialization = {
   newMessageBody: 'GGMU!',
 };
 
-const dialogsReducer = (state = initialization, action) => {
+const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_MESSAGE_TEXT:
-      // let stateCopy={...state}
-      // stateCopy.newMessageBody = action.textMessage;
-
-      // return stateCopy;
       return {
         ...state,
         newMessageBody: action.textMessage,
@@ -56,11 +52,8 @@ const dialogsReducer = (state = initialization, action) => {
         ...state,
         messages: [...state.messages, newMessage],
         newMessageBody: '',
+        initialState,
       };
-    // stateCopy.messages=[...state.messages]
-    // stateCopy.messages.push(newMessage);
-    // stateCopy.newMessageBody = '';
-    // return stateCopy;
 
     default:
       return state;

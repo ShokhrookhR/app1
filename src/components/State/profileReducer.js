@@ -2,7 +2,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
-let initialization = {
+let initialState = {
   newPostText: 'GGMU!',
   posts: [
     {
@@ -24,7 +24,7 @@ let initialization = {
   userProfile: null,
 };
 
-const profileReducer = (state = initialization, action) => {
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_POST_TEXT:
       return {
