@@ -10,14 +10,19 @@ export const usersApi = {
       return response.data;
     });
   },
-  //   followUsers(userId) {
-  //     return instance.post(`follow${userId}`).then((response) => {
-  //       return response.data;
-  //     });
-  //   },
-  //   unFollowUsers(userId) {
-  //     return instance.delete(`follow${userId}`).then((response) => {
-  //       return response.data;
-  //     });
-  //   },
+  getProfile(userId) {
+    return instance.get(`profile/${userId}`).then((response) => {
+      return response.data;
+    });
+  },
+  followUsers(userId) {
+    return instance.post(`follow/${userId}`).then((response) => {
+      return response.data;
+    });
+  },
+  unfollowUsers(userId) {
+    return instance.delete(`follow/${userId}`).then((response) => {
+      return response.data;
+    });
+  },
 };

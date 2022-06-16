@@ -1,38 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  followAC,
+  followSuccessThunkCreator,
+  unfollowSuccessThunkCreator,
+  getUsersThunkCreator,
   setCurrentPageAC,
-  setTotalUsersAC,
-  setUsersAC,
-  toggleFollowingProgressAC,
-  toggleIsLoadingAC,
-  unfollowAC,
 } from '../State/usersReducer';
 import Users from './Users';
 import Preloader from './Preloader';
-import { usersApi } from '../../api/api';
 
 class UsersContainer extends Component {
   componentDidMount() {
-    this.props.toggleIsLoading(true);
-    usersApi.getUsers(this.props.currentPage, this.props.count).then((data) => {
-      this.props.toggleIsLoading(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsers(data.totalCount / 100);
-      console.log(data);
-    });
+    this.props.getUsers(this.props.currentPage, this.props.count);
   }
   setCurrentPage = (currentPage) => {
     this.props.setCurrentPage(currentPage);
-    this.props.toggleIsLoading(true);
-
-    usersApi.getUsers(currentPage, this.props.count).then((data) => {
-      this.props.toggleIsLoading(false);
-
-      this.props.setUsers(data.items);
-      console.log(data);
-    });
+    this.props.getUsers(currentPage, this.props.count);
   };
   render() {
     return (
@@ -78,15 +61,9 @@ let f1 = (state) => ({
 // };
 
 export default connect(f1, {
-  follow: followAC,
-
-  unfollow: unfollowAC,
-
-  setUsers: setUsersAC,
-
   setCurrentPage: setCurrentPageAC,
-  setTotalUsers: setTotalUsersAC,
 
-  toggleIsLoading: toggleIsLoadingAC,
-  togglefollowingProgress: toggleFollowingProgressAC,
+  getUsers: getUsersThunkCreator,
+  followSuccess: followSuccessThunkCreator,
+  unfollowSuccess: unfollowSuccessThunkCreator,
 })(UsersContainer);
