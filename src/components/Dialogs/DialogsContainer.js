@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import withRedirect from '../Redirect/withRedirect';
 
 import { addMessageActionCreator, updateMessageActionCreator } from '../State/dialogsReducer';
 
@@ -30,6 +32,7 @@ let f1 = (state) => {
     users: state.dialogPage.users,
     messages: state.dialogPage.messages,
     newMessageBody: state.dialogPage.newMessageBody,
+    isAuth: state.auth.isAuth,
   };
 };
 let f2 = (dispatch) => {
@@ -42,7 +45,5 @@ let f2 = (dispatch) => {
     },
   };
 };
-const DialogsContainer = connect(f1, f2)(Dialogs);
 
-
-export default DialogsContainer;
+export default compose(connect(f1, f2), withRedirect)(Dialogs);

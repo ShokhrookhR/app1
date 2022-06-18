@@ -6,6 +6,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/dialogs/*" element={<DialogsContainer />} />
           <Route path="/carousel/*" element={<Carousel />} />
           <Route path="/users/*" element={<UsersContainer />} />
-          <Route path="/" element={<ProfileContainer />} />
+          <Route path="/login/*" element={<Login />} />
         </Routes>
       </div>
     </div>

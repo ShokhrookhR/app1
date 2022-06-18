@@ -26,3 +26,10 @@ export const usersApi = {
     });
   },
 };
+export const authApi = {
+  me() {
+    return instance.get(`auth/me`).then((response) => {
+      return response.data;
+    });
+  },
+};

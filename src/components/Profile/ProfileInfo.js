@@ -1,5 +1,6 @@
 import React from 'react';
 import Preloader from '../Users/Preloader';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -11,8 +12,9 @@ const ProfileInfo = (props) => {
       <div>
         {props.profile.lookingForAJob ? <span>Ишю работу</span> : <span>Уже нашёл работу</span>}
       </div>
+      <ProfileStatus {...props} />
       <div>Моё полное имя: {props.profile.fullName}</div>
-      <div>Мой статус: {props.profile.aboutMe}</div>
+      <div>Обо мне: {props.profile.aboutMe}</div>
       <div>Facebook: {props.profile.contacts.facebook}</div>
       <div>VK: {props.profile.contacts.vk}</div>
       <div>Twitter: {props.profile.contacts.twitter}</div>

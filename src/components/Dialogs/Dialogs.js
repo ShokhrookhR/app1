@@ -1,6 +1,7 @@
 import React from 'react';
 import DialogItem from './DialogItems/DialogItem';
 import s from './Dialogs.module.css';
+import { Navigate } from 'react-router-dom';
 
 const Message = (props) => {
   return <div className={s.messages}>{props.message}</div>;
@@ -18,6 +19,7 @@ function Dialogs(props) {
     let text = newRef.current.value;
     props.updateMessageText(text);
   };
+
   return (
     <div className={s.dialogs}>
       <div className={s.container}>
