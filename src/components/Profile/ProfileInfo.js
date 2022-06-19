@@ -1,6 +1,7 @@
 import React from 'react';
 import Preloader from '../Users/Preloader';
 import ProfileStatus from './ProfileStatus';
+import Sancho from '../../assets/Images/Sancho.jpg';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -8,7 +9,7 @@ const ProfileInfo = (props) => {
   }
   return (
     <div>
-      <img src={props.profile.photos.large} alt="User's ava" />
+      <img src={props.profile.photos.large || Sancho} alt="User's ava" />
       <div>
         {props.profile.lookingForAJob ? <span>Ишю работу</span> : <span>Уже нашёл работу</span>}
       </div>

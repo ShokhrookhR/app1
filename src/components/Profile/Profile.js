@@ -9,10 +9,10 @@ import ProfileInfo from './ProfileInfo';
 function Profile(props) {
   return (
     <div className={s.profile}>
-      <div className={s.img}>
+      {/* <div className={s.img}>
         <img src="https://picsum.photos/1000/200" alt="" />
-      </div>
-      <ProfileInfo profile={props.userProfile} />
+      </div> */}
+      <ProfileInfo {...props} profile={props.userProfile} />
       <div className={s.body}>
         <div className={s.content}>
           <MyPostsContainer store={props.store} />

@@ -25,6 +25,16 @@ export const usersApi = {
       return response.data;
     });
   },
+  setProfileStatus(userId) {
+    return instance.get(`/profile/status/${userId}`).then((response) => {
+      return response.data;
+    });
+  },
+  updateStatus(status) {
+    return instance.put(`/profile/status`, { status: status }).then((response) => {
+      return response.data;
+    });
+  },
 };
 export const authApi = {
   me() {
