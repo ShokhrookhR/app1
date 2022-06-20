@@ -11,6 +11,9 @@
 	/* text-indent: 15px; */
 
 }
+.input{
+	flex: 0 1 50%;
+}
 
 .btn{
 	display: flex;
@@ -23,5 +26,12 @@
 	color: #ffffff;
 	letter-spacing: 1px;
 	border-radius: 5px;
+	
 }
 
+.form{
+	display:flex;
+	flex-wrap: wrap;
+	gap:20px;
+
+}

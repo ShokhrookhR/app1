@@ -5,6 +5,8 @@ import headerReducer from './headerReducer';
 import navbarReducer from './navbarReducer';
 import profileReducer from './profileReducer';
 import usersReducer from './usersReducer';
+import { reducer as formReducer } from 'redux-form';
+import loginReducer from './loginReducer';
 
 let reducers = combineReducers({
   profilePage: profileReducer,
@@ -12,6 +14,8 @@ let reducers = combineReducers({
   navbarPage: navbarReducer,
   usersPage: usersReducer,
   auth: headerReducer,
+  form: formReducer,
+  login: loginReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleWare));
