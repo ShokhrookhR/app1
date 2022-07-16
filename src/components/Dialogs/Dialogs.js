@@ -1,23 +1,16 @@
 import React from 'react';
 import DialogItem from './DialogItems/DialogItem';
 import s from './Dialogs.module.css';
-import { Navigate } from 'react-router-dom';
+import Dialog from './DialogForm';
 
 const Message = (props) => {
   return <div className={s.messages}>{props.message}</div>;
 };
 
 function Dialogs(props) {
-  let newRef = React.createRef();
-  let onAddMessage = () => {
-    let text = newRef.current.value;
-    if (props.newMessageBody) {
-      props.addMessage(text);
-    }
-  };
-  let onUpdateMessageText = () => {
-    let text = newRef.current.value;
-    props.updateMessageText(text);
+  let onSendMessage = (value) => {
+    props.addMessage(value.message);
+    console.log(value);
   };
 
   return (
@@ -36,14 +29,7 @@ function Dialogs(props) {
                   <Message message={e.message} />
                 ))}
               </div>
-
-              <div className={s.btns}>
-                <textarea
-                  ref={newRef}
-                  onChange={onUpdateMessageText}
-                  value={props.newMessageBody}></textarea>
-                <button onClick={onAddMessage}>Send</button>
-              </div>
+              <Dialog onSubmit={onSendMessage} />
             </div>
           </div>
         </div>

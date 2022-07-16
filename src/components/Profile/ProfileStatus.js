@@ -17,11 +17,6 @@ export default class ProfileStatus extends Component {
     this.setState({ status: e.currentTarget.value });
   };
   componentDidMount() {
-    let userId = this.props.router.params.userId;
-    if (!userId) {
-      userId = 24363;
-    }
-    this.props.setStatus(userId);
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.status !== this.props.status) {

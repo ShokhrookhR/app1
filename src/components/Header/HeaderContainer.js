@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { getAuthUSerDataTC } from '../State/headerReducer';
+import { getAuthUSerDataTC, logout } from '../State/authReducer';
 import Header from './Header';
 
-class HeaderContainer extends Component {
-  componentDidMount() {
-    this.props.getAuthUSerData();
-  }
-  render() {
-    return <Header {...this.props} />;
-  }
-}
+const HeaderContainer = (props) => {
+  React.useEffect(() => {
+    props.getAuthUSerData();
+  }, [props]);
+  return <Header {...props} />;
+};
 
 let mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
@@ -18,4 +16,6 @@ let mapStateToProps = (state) => ({
   userId: state.auth.userId,
   users: state.usersPage.users,
 });
-export default connect(mapStateToProps, { getAuthUSerData: getAuthUSerDataTC })(HeaderContainer);
+export default connect(mapStateToProps, { getAuthUSerData: getAuthUSerDataTC, logout: logout })(
+  HeaderContainer,
+);

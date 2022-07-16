@@ -20,3 +20,20 @@
 .auth a{
 	color: rosybrown;
 }
+.btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px 10px;
+	background-color: violet;
+	color: #ffffff;
+	border-radius: 5px;
+}
+.btn:hover{
+	background-color: rgb(255, 192, 233);
+}
+.user{
+	display: flex;
+	align-items: center;
+	
+}

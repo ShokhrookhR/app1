@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { setProfile, setStatus, updateStatus } from '../State/profileReducer';
 import Profile from './Profile';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-
 import withRedirect from '../Redirect/withRedirect';
 import { compose } from 'redux';
 
-class ProfileContainer extends Component {
-  componentDidMount() {
-    let userId = this.props.router.params.userId;
+const ProfileContainerFunc = (props) => {
+  React.useEffect(() => {
+    let userId = props.router.params.userId;
     if (!userId) {
-      userId = this.props.loginedUserId;
+      userId = props.loginedUserId;
     }
-    this.props.setProfile(userId);
-    this.props.setStatus(userId);
-  }
+    props.setProfile(userId);
+    props.setStatus(userId);
+  }, []);
 
-  render() {
-    return <Profile {...this.props} />;
-  }
-}
+  return <Profile {...props} />;
+};
+
 let mapStateToProps = (state) => ({
   userProfile: state.profilePage.userProfile,
   profileStatus: state.profilePage.profileStatus,
@@ -47,6 +45,4 @@ export default compose(
   }),
   withRouter,
   withRedirect,
-)(ProfileContainer);
-
-
+)(ProfileContainerFunc);

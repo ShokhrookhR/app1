@@ -2,6 +2,7 @@ import React from 'react';
 import Preloader from '../Users/Preloader';
 import ProfileStatus from './ProfileStatus';
 import Sancho from '../../assets/Images/Sancho.jpg';
+import ProfileStatusWihHooks from './ProfileStatusWihHooks';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -13,7 +14,7 @@ const ProfileInfo = (props) => {
       <div>
         {props.profile.lookingForAJob ? <span>Ишю работу</span> : <span>Уже нашёл работу</span>}
       </div>
-      <ProfileStatus {...props} />
+      <ProfileStatusWihHooks {...props} />
       <div>Моё полное имя: {props.profile.fullName}</div>
       <div>Обо мне: {props.profile.aboutMe}</div>
       <div>Facebook: {props.profile.contacts.facebook}</div>

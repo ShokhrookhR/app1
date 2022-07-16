@@ -10,7 +10,7 @@ const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE_FOLLOWING_PROGRESS';
 
 let initialState = {
   users: [],
-  totalUsers: 100,
+  totalUsers: null,
   count: 5,
   currentPage: 1,
   isLoading: false,
@@ -117,31 +117,28 @@ export const toggleFollowingProgress = (isLoading, userId) => {
   };
 };
 
-export const getUsersThunkCreator = (currentPage, count) => (dispatch) => {
+export const getUsersThunkCreator = (currentPage, count) => async (dispatch) => {
   dispatch(toggleIsLoading(true));
-  usersApi.getUsers(currentPage, count).then((data) => {
-    dispatch(toggleIsLoading(false));
-    dispatch(setUsers(data.items));
-    dispatch(setTotalUsers(data.totalCount / 100));
-  });
+  let data = await usersApi.getUsers(currentPage, count);
+  dispatch(toggleIsLoading(false));
+  dispatch(setUsers(data.items));
+  dispatch(setTotalUsers(data.totalCount));
 };
-export const followSuccessThunkCreator = (userId) => (dispatch) => {
+export const followSuccessThunkCreator = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userId));
-  usersApi.followUsers(userId).then((data) => {
-    if (data.resultCode === 0) {
-      dispatch(follow(userId));
-    }
-    dispatch(toggleFollowingProgress(false, userId));
-  });
+  let data = await usersApi.followUsers(userId);
+  if (data.resultCode === 0) {
+    dispatch(follow(userId));
+  }
+  dispatch(toggleFollowingProgress(false, userId));
 };
-export const unfollowSuccessThunkCreator = (userId) => (dispatch) => {
+export const unfollowSuccessThunkCreator = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userId));
-  usersApi.unfollowUsers(userId).then((data) => {
-    if (data.resultCode === 0) {
-      dispatch(unfollow(userId));
-    }
-    dispatch(toggleFollowingProgress(false, userId));
-  });
+  let data = await usersApi.unfollowUsers(userId);
+  if (data.resultCode === 0) {
+    dispatch(unfollow(userId));
+  }
+  dispatch(toggleFollowingProgress(false, userId));
 };
 
 export default usersReducer;

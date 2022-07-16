@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import s from './Header.module.css';
 
 function Header(props) {
-  console.log(props.users);
+  
 
   return (
     <div className={s.header}>
@@ -12,7 +12,16 @@ function Header(props) {
           <img src="https://picsum.photos/200/200" alt="" />
         </div>
         <div className={s.auth}>
-          {props.isAuth ? props.login : <NavLink to={'/login'}>Log In</NavLink>}
+          {props.isAuth ? (
+            <div className={s.user}>
+              <div>{props.login} - </div>
+              <button onClick={props.logout} className={s.btn}>
+                Log Out
+              </button>
+            </div>
+          ) : (
+            <NavLink to={'/login'}>Log In</NavLink>
+          )}
           <div>
             {props.users.map((u) => {
               return u.id === props.userId ? <div>{u.id}</div> : null;

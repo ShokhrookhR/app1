@@ -1,9 +1,33 @@
 .title{
-	font-size:50px;
+	font-size:30px;
 	
 }
 .body{
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 10px;
+}
+.login{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	background-color: pink;
+	padding: 10px;
+	color: #4e12ae;
+	font-weight: 500;
+	border-radius: 5px;
+}
+.login:active{
+	background-color:#4e12ae;
+	color: palevioletred;
+}
+.login:hover{
+	background-color:#4e12ae;
+	color: pink;
+}
+.wrapper{
+	padding: 50px 0;
+	
 }

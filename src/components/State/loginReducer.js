@@ -1,5 +1,3 @@
-import { authApi } from '../../api/api';
-
 const SET_LOGIN = 'SET_LOGIN';
 
 let initialState = {
@@ -28,11 +26,5 @@ export const setLoginAC = (email, password, rememberMe) => {
     data: { email, password, rememberMe },
   };
 };
-export const sendLoginForm = (email, password, rememberMe) => (dispatch) => {
-  authApi.login(email, password, rememberMe).then((data) => {
-    if (data.resultCode === 0) {
-      dispatch(setLoginAC(email, password, rememberMe));
-    }
-  });
-};
+
 export default loginReducer;

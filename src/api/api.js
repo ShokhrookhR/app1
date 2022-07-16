@@ -5,15 +5,18 @@ const instance = axios.create({
   headers: { 'API-KEY': '118eba35-d114-41d8-894b-1614bc1b7a9d' },
 });
 export const usersApi = {
-  getUsers(page, count) {
-    return instance.get(`users?page=${page}&count=${count}`).then((response) => {
-      return response.data;
-    });
+  // getUsers(page, count) {
+  //   return instance.get(`users?page=${page}&count=${count}`).then((response) => {
+  //     return response.data;
+  //   });
+  // },
+  async getUsers(page, count) {
+    let response = await instance.get(`users?page=${page}&count=${count}`);
+    return response.data;
   },
-  getProfile(userId) {
-    return instance.get(`profile/${userId}`).then((response) => {
-      return response.data;
-    });
+  async getProfile(userId) {
+    let response = await instance.get(`profile/${userId}`);
+    return response.data;
   },
   followUsers(userId) {
     return instance.post(`follow/${userId}`).then((response) => {
@@ -42,8 +45,13 @@ export const authApi = {
       return response.data;
     });
   },
-  login(email, password, rememberMe) {
+  login(email, password, rememberMe = false) {
     return instance.post(`/auth/login`, { email, password, rememberMe }).then((response) => {
+      return response.data;
+    });
+  },
+  logout() {
+    return instance.delete(`/auth/login`).then((response) => {
       return response.data;
     });
   },

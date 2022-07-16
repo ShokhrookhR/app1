@@ -29,19 +29,7 @@
 	padding: 15px;
 	
 }
-.pagination {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	margin: 0px 0px 20px 0px;
-}
-.active{
-	font-weight: 700;
-	color: rgb(255, 0, 191);
-}
+
 .page{
-	cursor: pointer;
-}
-.pagination span{
 	cursor: pointer;
 }

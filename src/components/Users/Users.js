@@ -3,30 +3,14 @@ import './Users.module.css';
 import s from './Users.module.css';
 import userPhoto from '../../assets/Images/user.png';
 import { NavLink } from 'react-router-dom';
-
-
+import Paginator from '../Common/FormsContorls/Pagenator/Paginator';
+import Preloader from './Preloader';
 
 const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsers / props.count);
-  let pages = [];
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
   return (
     <div className={s.wrapper}>
-      <div className={s.pagination}>
-        {pages.map((p) => {
-          return (
-            <span
-              onClick={(e) => {
-                props.setCurrentPage(p);
-              }}
-              className={props.currentPage === p && s.active}>
-              {p}
-            </span>
-          );
-        })}
-      </div>
+      <Paginator {...props} />
+      {props.isLoading ? <Preloader /> : null}
       <div className={s.body}>
         {props.users.map((u, i) => (
           <div key={u.id} className={s.item}>

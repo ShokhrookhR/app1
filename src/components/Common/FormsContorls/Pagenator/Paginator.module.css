@@ -1,0 +1,32 @@
+.pagination {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	margin: 0px 0px 20px 0px;
+}
+.pagination span{
+	cursor: pointer;
+}
+.active{
+	font-weight: 700;
+	color: rgb(255, 0, 191);
+}
+.btn{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px 10px;
+	background-color: #ffffff;
+	color: rgb(91, 89, 89);
+	border-radius: 5px;
+}
+.btn:active{
+	background-color: rgb(255, 132, 0);
+	color: #ffffff;
+}
+.input{
+	width: 50px;
+	padding: 5px;
+	font-weight: 700;
+}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   followSuccessThunkCreator,
@@ -7,7 +7,6 @@ import {
   setCurrentPageAC,
 } from '../State/usersReducer';
 import Users from './Users';
-import Preloader from './Preloader';
 import {
   getCount,
   getCurrentPage,
@@ -17,24 +16,22 @@ import {
   getUsersSuperSelector,
 } from '../State/usersSelectors';
 
-class UsersContainer extends Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.count);
-  }
-  setCurrentPage = (currentPage) => {
-    this.props.setCurrentPage(currentPage);
-    this.props.getUsers(currentPage, this.props.count);
-  };
-  render() {
-    return (
-      <>
-        {this.props.isLoading ? <Preloader /> : null}
+const UsersContainer = (props) => {
+  React.useEffect(() => {
+    props.getUsers(props.currentPage, props.count);
+  }, []);
 
-        <Users {...this.props} setCurrentPage={this.setCurrentPage} />
-      </>
-    );
-  }
-}
+  const setCurrentPage = (currentPage) => {
+    props.setCurrentPage(currentPage);
+    props.getUsers(currentPage, props.count);
+  };
+
+  return (
+    <>
+      <Users {...props} setCurrentPage={setCurrentPage} />
+    </>
+  );
+};
 
 let f1 = (state) => ({
   users: getUsersSuperSelector(state),
